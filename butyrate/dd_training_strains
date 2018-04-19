@@ -1,0 +1,45 @@
+Faecalibacterium prausnitzii L2-6	682	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Faecalibacterium_prausnitzii/latest_assembly_versions/GCA_002734145.1_ASM273414v1/GCA_002734145.1_ASM273414v1	Faecalibacterium_prausnitzii_L2-6
+Eubacterium rectale	1735	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/_Eubacterium_rectale/latest_assembly_versions/GCA_000020605.1_ASM2060v1/GCA_000020605.1_ASM2060v1	Eubacterium_rectale
+Butyrivibrio fibrisolvens	2228	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Butyrivibrio_fibrisolvens/latest_assembly_versions/GCA_900129945.1_IMG-taxon_2585428068_annotated_assembly/GCA_900129945.1_IMG-taxon_2585428068_annotated_assembly	Butyrivibrio_fibrisolvens
+Butyrivibrio hungatei	16202	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Butyrivibrio_hungatei/latest_assembly_versions/GCA_900143205.1_IMG-taxon_2582580726_annotated_assembly/GCA_900143205.1_IMG-taxon_2582580726_annotated_assembly	Butyrivibrio_hungatei
+Clostridium acetobutylicum	1022	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Clostridium_acetobutylicum/latest_assembly_versions/GCA_000008765.1_ASM876v1/GCA_000008765.1_ASM876v1	Clostridium_acetobutylicum
+Clostridium difficile	535	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Clostridioides_difficile/latest_assembly_versions/GCA_000009205.2_ASM920v2/GCA_000009205.2_ASM920v2	Clostridium_difficile
+Clostridium tyrobutyricum	14538	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Clostridium_tyrobutyricum/latest_assembly_versions/GCA_001642655.1_ASM164265v1/GCA_001642655.1_ASM164265v1	Clostridium_tyrobutyricum
+Eubacterium limosum	3114	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/152/245/GCA_000152245.2_ASM15224v2/GCA_000152245.2_ASM15224v2	Eubacterium_limosum
+Eubacterium oxidoreducens	49506	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/900/104/415/GCF_900104415.1_IMG-taxon_2593339221_annotated_assembly/GCF_900104415.1_IMG-taxon_2593339221_annotated_assembly	Eubacterium_oxidoreducens
+Faecalibacterium prausnitzii A2-165  	682	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Faecalibacterium_prausnitzii/latest_assembly_versions/GCA_000162015.1_ASM16201v1/GCA_000162015.1_ASM16201v1	Faecalibacterium_prausnitzii_A2-165  
+Pseudobutyrivibrio xylanivorans	49391	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Pseudobutyrivibrio_xylanivorans/latest_assembly_versions/GCA_900141825.1_IMG-taxon_2585428087_annotated_assembly/GCA_900141825.1_IMG-taxon_2585428087_annotated_assembly	Pseudobutyrivibrio_xylanivorans
+Roseburia intestinalis	2047	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Roseburia_intestinalis/latest_assembly_versions/GCA_000156535.1_ASM15653v1/GCA_000156535.1_ASM15653v1	Roseburia_intestinalis
+Anaerostipes caccae P2	984	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/154/305/GCF_000154305.1_ASM15430v1/GCF_000154305.1_ASM15430v1	Anaerostipes_caccae_P2
+Eubacterium hallii	978	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/_Eubacterium_hallii/latest_assembly_versions/GCA_000173975.1_ASM17397v1/GCA_000173975.1_ASM17397v1	Eubacterium_hallii
+Clostridium sp. SS2/1	NA	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/154/545/GCA_000154545.1_ASM15454v1/GCA_000154545.1_ASM15454v1	Clostridium_sp._SS2-1
+SSC/2	11173	iv_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Anaerostipes_hadrus/latest_assembly_versions/GCA_000332875.2_ASM33287v2/GCA_000332875.2_ASM33287v2	SSC-2
+Roseburia faecis	954	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Roseburia_faecis/latest_assembly_versions/GCA_001405615.1_13414_6_47/GCA_001405615.1_13414_6_47	Roseburia_faecis
+Roseburia hominis	2752	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Roseburia_hominis/latest_assembly_versions/GCA_000225345.1_ASM22534v1/GCA_000225345.1_ASM22534v1	Roseburia_hominis
+Roseburia inulinivorans	2081	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Roseburia_inulinivorans/latest_assembly_versions/GCA_000174195.1_ASM17419v1/GCA_000174195.1_ASM17419v1	Roseburia_inulinivorans
+Eubacterium ramulus	15490	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Eubacterium_ramulus/latest_assembly_versions/GCA_000469345.1_ASM46934v1/GCA_000469345.1_ASM46934v1	Eubacterium_ramulus
+Coprococcus catus GD/7	2747	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/210/555/GCA_000210555.1_ASM21055v1/GCA_000210555.1_ASM21055v1	Coprococcus_catus_GD-7
+Eubacterium cylindroides	2234	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Faecalitalea_cylindroides/latest_assembly_versions/GCA_000210615.1_ASM21061v1/GCA_000210615.1_ASM21061v1	Eubacterium_cylindroides
+Subdoligranulum variabile	980	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/157/955/GCA_000157955.1_ASM15795v1/GCA_000157955.1_ASM15795v1	Subdoligranulum_variabile
+Anaerotruncus colihominis	960	isolate_yes	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Anaerotruncus_colihominis/latest_assembly_versions/GCA_000154565.1_ASM15456v1/GCA_000154565.1_ASM15456v1	Anaerotruncus_colihominis
+E. coli	167	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/005/845/GCA_000005845.2_ASM584v2/GCA_000005845.2_ASM584v2	Escherichia_coli
+Eubacterium eligens	1200	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/_Eubacterium_eligens/latest_assembly_versions/GCA_000146185.1_ASM14618v1/GCA_000146185.1_ASM14618v1	Eubacterium_eligens
+Clostridium aminovalericum	50020	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Anaerocolumna_aminovalerica/latest_assembly_versions/GCA_900115365.1_IMG-taxon_2634166351_annotated_assembly/GCA_900115365.1_IMG-taxon_2634166351_annotated_assembly	Clostridium_aminovalericum
+Clostridium sphenoides	17362	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/105/615/GCA_900105615.1_IMG-taxon_2675902961_annotated_assembly/GCA_900105615.1_IMG-taxon_2675902961_annotated_assembly	Clostridium_sphenoides
+Clostridium clostridiiformes	2847	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/371/405/GCA_000371405.1_Clos_clos_CM201_V1/GCA_000371405.1_Clos_clos_CM201_V1	Clostridium_clostridiiformes
+Ruminococcus obeum	972	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/153/905/GCA_000153905.1_ASM15390v1/GCA_000153905.1_ASM15390v1	Ruminococcus_obeum
+Ruminococcus productus	14364	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/genbank/bacteria/Blautia_producta/latest_assembly_versions/GCA_002915535.1_ASM291553v1/GCA_002915535.1_ASM291553v1	Ruminococcus_productus
+Eubacterium uniforme	53513	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/167/115/GCA_900167115.1_IMG-taxon_2585428145_annotated_assembly/GCA_900167115.1_IMG-taxon_2585428145_annotated_assembly	Eubacterium_uniforme
+Ruminococcus gnavus	979	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/475/GCA_000169475.1_ASM16947v1/GCA_000169475.1_ASM16947v1	Ruminococcus_gnavus
+Ruminococcus torques	973	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/153/925/GCA_000153925.1_ASM15392v1/GCA_000153925.1_ASM15392v1	Ruminococcus_torques
+Eubacterium contortum	40814	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/001/404/335/GCA_001404335.1_13470_2_95/GCA_001404335.1_13470_2_95	Eubacterium_contortum
+Eubacterium formicigenerans	2064	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/169/235/GCA_000169235.1_ASM16923v1/GCA_000169235.1_ASM16923v1	Eubacterium_formicigenerans
+Clostridium nexile	2046	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/156/035/GCA_000156035.2_ASM15603v2/GCA_000156035.2_ASM15603v2	Clostridium_nexile
+Clostridium ramosum	962	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/154/485/GCA_000154485.1_ASM15448v1/GCA_000154485.1_ASM15448v1	Clostridium_ramosum
+Clostridium spiroforme	949	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/154/805/GCA_000154805.1_ASM15480v1/GCA_000154805.1_ASM15480v1	Clostridium_spiroforme
+Clostridium glycolicum	14311	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/114/105/GCA_900114105.1_IMG-taxon_2595698217_annotated_assembly/GCA_900114105.1_IMG-taxon_2595698217_annotated_assembly	Clostridium_glycolicum
+Clostridium bifermentans	15093	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/452/245/GCA_000452245.2_ASM45224v2/GCA_000452245.2_ASM45224v2	Clostridium_bifermentans
+Ruminococcus bromii	2230	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/900/101/355/GCA_900101355.1_IMG-taxon_2593339225_annotated_assembly/GCA_900101355.1_IMG-taxon_2593339225_annotated_assembly	Ruminococcus_bromii
+Clostridium leptum	951	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/154/345/GCA_000154345.1_ASM15434v1/GCA_000154345.1_ASM15434v1	Clostridium_leptum
+Ruminococcus albus	1019	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/179/635/GCA_000179635.2_ASM17963v2/GCA_000179635.2_ASM17963v2	Ruminococcus_albus
+Ruminococcus flavefaciens	2141	no	ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/518/765/GCA_000518765.1_ASM51876v1/GCA_000518765.1_ASM51876v1	Ruminococcus_flavefaciens

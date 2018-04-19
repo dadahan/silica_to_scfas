@@ -1,0 +1,8 @@
+Notes for Bryan's pipeline
+#Need to add taxa name for unique headers before KO
+for i in `cat all_organisms.txt`; do perl -pi -e "s/^>/>${i}-/g" ${i}/${i}-protein-sequences.fa; done
+
+#Use new version of interproscan, downloaded locally and exported to PATH
+for i in `cat all_organisms.txt`; do interproscan.sh -cpu 16 -f tsv --goterms --iprlookup --pathways -i ${i}/${i}-protein-sequences.fa -o ${i}/interproscan-results.txt; done
+
+interproscan, pass -dra flag to skip individual residue annotation
