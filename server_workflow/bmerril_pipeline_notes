@@ -2,7 +2,16 @@ Notes for Bryan's pipeline
 #Need to add taxa name for unique headers before KO
 for i in `cat all_organisms.txt`; do perl -pi -e "s/^>/>${i}-/g" ${i}/${i}-protein-sequences.fa; done
 
+#Then use GHOSTKoala to annotate
+
+#When output, remove non ascii character with. e.g.:
+perl -pe's/[[:^ascii:]]//g' < ~/Downloads/user_ko_1.txt > user_ko_1_no_ascii.txt
+
+#Then run count script with e.g.,:
+python dd_ko_genome_counts.py user_ko_1_no_ascii.txt user_ko_counts user_ko_counts_R
+
 #Use new version of interproscan, downloaded locally and exported to PATH
 for i in `cat all_organisms.txt`; do interproscan.sh -cpu 16 -f tsv --goterms --iprlookup --pathways -i ${i}/${i}-protein-sequences.fa -o ${i}/interproscan-results.txt; done
 
 interproscan, pass -dra flag to skip individual residue annotation
+

@@ -1,0 +1,287 @@
+---
+title: "KO terms to Random Forests"
+output: html_notebook
+---
+
+```{r}
+library(reshape2)
+library(caret)
+library(rpart.plot)
+library(doMC)
+registerDoMC(cores = 8)
+
+ko_counts <- read.csv("~/Documents/GitHub/silica_to_scfas/butyrate/user_ko_no_ascii_counts_R")[,-1]
+
+ko_counts <- dcast(ko_counts, taxa ~ K0, value.var = "taxa")
+rownames(ko_counts) <- ko_counts[,"taxa"]
+#need to revisit, for some reason, Ruminococcus flavefaciens was left out of the whole analysis, it is in training strains file
+strain_but <- read.csv("~/Documents/GitHub/silica_to_scfas/butyrate/training_strains_for_r.csv")
+strain_but <- strain_but[,c("butyrate",
+"taxa_out_name","glucose")]
+rownames(strain_but) <- strain_but[,"taxa_out_name"]
+
+df <- cbind(strain_but,ko_counts)
+df <- df[ , -which(names(df) %in% c("taxa","taxa_out_name"))]
+```
+
+
+```{r}
+anyNA(df)
+traininButYes <- sample(unique(subset(strain_but, butyrate == "yes")$taxa_out_name), size = 15)
+traininButNo <- sample(unique(subset(strain_but, butyrate == "no")$taxa_out_name), size = 15)
+
+inTrain <- which(strain_but$taxa_out_name %in% unlist((list(traininButYes,traininButNo))))
+training <- df[inTrain,]
+testing <- df[-inTrain,]
+
+mtry <- sqrt(ncol(df))
+tunegrid <- expand.grid(.mtry = mtry)
+metric <- 'Accuracy'
+control <- trainControl(method = 'repeatedcv', number = 10, repeats = 2, search = 'random', savePredictions = TRUE)
+
+rfFit <- train(butyrate ~ ., data = df, trControl = control, metric = metric, ntree = 15, method = "rf", preProc = "center")
+
+rfFit_500 <- train(butyrate ~ ., data = df, trControl = control, tunegrid = tunegrid, metric = metric, ntree = 500, method = "rf", preProc = "center")
+
+plot(rfFit_15, ylim=c(0.5, 0.65))
+
+plot(rfFit_500, ylim=c(0.5, 0.65))
+
+# Save the variable importance values from our model object generated from caret.
+x<-varImp(rfFit_15, scale = TRUE)
+# Get the row names of the variable importance data
+rownames(rfFit_15$importance)
+# Convert the variable importance data into a dataframe
+importance <- data.frame(rownames(x$importance), x$importance$Overall)
+# Relabel the data
+names(importance)<-c('K0', 'Importance')
+# Order the data from greatest importance to least important
+importance <- transform(importance, K0 = reorder(K0, Importance))
+# Plot the data with ggplot.
+topimp <- subset(importance, importance$Importance > 0)
+ggplot(data=topimp, aes(x=K0, y=Importance)) +
+  geom_bar(stat = 'identity',colour = "blue", fill = "white") + coord_flip()
+
+
+
+```
+
+
+```{r}
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+seed <- 7
+metric <- "Accuracy"
+set.seed(seed)
+
+mtry <- sqrt(ncol(df))
+tunegrid <- expand.grid(.mtry=mtry)
+```
+
+
+```{r}
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="random")
+set.seed(seed)
+mtry <- sqrt(ncol(df))
+rf_random <- train(butyrate~., data=df, method="rf", metric=metric, tuneLength=15, trControl=control)
+print(rf_random)
+plot(rf_random)
+```
+
+
+```{r}
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="grid")
+set.seed(seed)
+tunegrid <- expand.grid(.mtry=c(660:680))
+rf_gridsearch <- train(butyrate~., data=df, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+plot(rf_gridsearch)
+
+tunegrid2 <- expand.grid(.mtry=c(75:90))
+rf_gridsearch2 <- train(butyrate~., data=df, method="rf", metric=metric, tuneGrid=tunegrid2, trControl=control)
+
+print(rf_gridsearch2)
+plot(rf_gridsearch2)
+
+
+
+# Manual Search
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="grid")
+tunegrid <- expand.grid(.mtry=c(sqrt(ncol(x))))
+modellist <- list()
+for (ntree in c(1000, 1500, 2000, 2500)) {
+	set.seed(seed)
+	fit <- train(Class~., data=dataset, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control, ntree=ntree)
+	key <- toString(ntree)
+	modellist[[key]] <- fit
+}
+# compare results
+results <- resamples(modellist)
+summary(results)
+dotplot(results)
+
+# Manual Search
+control <- trainControl(method="repeatedcv", number=10, repeats=3, search="grid")
+tunegrid <- expand.grid(.mtry=c(sqrt(ncol(df))))
+modellist <- list()
+for (ntree in c(1000, 1500, 2000, 2500)) {
+	set.seed(seed)
+	fit <- train(butyrate~., data=df, method="rf", metric=metric, tuneGrid=tunegrid, trControl=control, ntree=ntree)
+	key <- toString(ntree)
+	modellist[[key]] <- fit
+}
+# compare results
+results <- resamples(modellist)
+summary(results)
+dotplot(results)
+
+rFfinalfit <- train(butyrate~., data=df, method="rf", metric=metric, tuneGrid=expand.grid(.mtry=675), trControl=control, ntree=2000)
+
+library(randomForest)
+customRF <- list(type = "Classification", library = "randomForest", loop = NULL)
+customRF$parameters <- data.frame(parameter = c("mtry", "ntree"), class = rep("numeric", 2), label = c("mtry", "ntree"))
+customRF$grid <- function(x, y, len = NULL, search = "grid") {}
+customRF$fit <- function(x, y, wts, param, lev, last, weights, classProbs, ...) {
+  randomForest(x, y, mtry = param$mtry, ntree=param$ntree, ...)
+}
+customRF$predict <- function(modelFit, newdata, preProc = NULL, submodels = NULL)
+   predict(modelFit, newdata)
+customRF$prob <- function(modelFit, newdata, preProc = NULL, submodels = NULL)
+   predict(modelFit, newdata, type = "prob")
+customRF$sort <- function(x) x[order(x[,1]),]
+customRF$levels <- function(x) x$classes
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+tunegrid <- expand.grid(.mtry=c(660:680), .ntree=c(1000, 1500, 2000, 2500))
+set.seed(seed)
+custom <- train(butyrate~., data=df, method=customRF, metric=metric, tuneGrid=tunegrid, trControl=control)
+summary(custom)
+plot(custom)
+```
+
+
+```{r}
+rfClasses <- predict(rfFit, newdata = df)
+table(rfClasses, df$butyrate)
+
+test <- as.data.frame(randomForest::importance(rfFit$finalModel))
+
+imdf <- as.data.frame(importance(rfFit$finalModel))
+
+
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+set.seed(3333)
+dtree_fit <- train(butyrate ~., data = training, method = "rpart",
+                   parms = list(split = "gini"),
+                   trControl=trctrl,
+                   tuneLength = 10)
+
+```
+
+
+Problem isn't with the model choice but with the features 
+
+```{r}
+butyrate_anno <- read.csv("~/Documents/GitHub/silica_to_scfas/butyrate/dd_butyrate_pathway_annotations.csv")
+
+butyrate_anno_py <- subset(butyrate_anno, pathway == "pyruvate")
+
+df_sub <- df[,(names(df)) %in% butyrate_anno$KO]
+df_sub <- cbind(strain_but,df_sub)
+df_sub <- df_sub[ , -which(names(df_sub) %in% c("taxa","taxa_out_name"))]
+df_sub_gluc <- subset(df_sub, glucose == "yes")
+df_sub_no <- subset(df_sub, butyrate == "no")
+
+df_sub2 <- df[,(names(df)) %in% butyrate_anno_py$KO]
+df_sub2 <- cbind(strain_but,df_sub2)
+df_sub2 <- df_sub2[ , -which(names(df_sub2) %in% c("taxa","taxa_out_name"))]
+df_sub_gluc2 <- subset(df_sub2, glucose == "yes")
+df_sub_no2 <- subset(df_sub2, butyrate == "no")
+df_sub2 <- rbind(df_sub_gluc2,df_sub_no2)
+
+set.seed(seed)
+
+df_sub$butyrate <- ifelse(df_sub$butyrate=="yes", 1, 0)
+df_sub2$butyrate <- ifelse(df_sub2$butyrate=="yes", 1, 0)
+df_sub2 <- df_sub2[ , -which(names(df_sub2) %in% "glucose")]
+
+
+logreg <- glm(butyrate~., data=df_sub)
+
+logreg2 <- glm(butyrate~., data=df_sub2)
+ 
+
+summary(logreg)
+levels(df_sub$butyrate)
+summary(logreg2)
+
+
+print(rf_random)
+plot(rf_random)
+```
+
+Decision tree
+```{r}
+df_sub_bool <- ifelse(df_sub>0,1,0)
+df_sub_bool <- as.data.frame(df_sub_bool)
+trctrl <- trainControl(method = "repeatedcv", number = 10, repeats = 3)
+set.seed(3333)
+df_sub_bool$butyrate <- ifelse(df_sub_bool$butyrate == 1,"yes","no")
+
+df_sub_train_yes <- sample(rownames(subset(df_sub_bool, butyrate == "yes")), size = 16)
+df_sub_train_no <- sample(rownames(subset(df_sub_bool, butyrate == "no")), size = 16)
+
+inTrain <- which(rownames(df_sub_bool) %in% unlist((list(df_sub_train_yes,df_sub_train_no))))
+
+#setup training and testing with all 4k features
+df_ng <- df[ , -which(names(df) %in% "glucose")]
+df_ng_training <- df_ng[inTrain,]
+df_ng_testing <- df_ng[-inTrain,]
+
+
+dtree_fit <- train(butyrate ~., data = df_ng_training, method = "rpart",
+                   trControl = trctrl,
+                   tuneLength = 10)
+
+rf_fit <- train(butyrate ~., data = df_ng_training, method = "rf",
+                   trControl = trctrl,
+                   tuneLength = 10)
+
+rf_fit$finalModel
+rf_fitImp = varImp(rf_fit)
+
+dtree_fit$finalModel
+dtree_fitImp = varImp(dtree_fit)
+plot(dtree_fitImp)
+plot(dtree_fit)
+dtreeClasses <- predict(dtree_fit, newdata = df_ng_testing)
+table(dtreeClasses, df_ng_testing$butyrate)
+
+
+#setup training and testing with 19 known butanoate metabolism features
+df_ng_training_sub_feat <- df_sub_bool[inTrain,]
+df_ng_testing_sub_feat <- df_sub_bool[-inTrain,]
+
+
+dtree_fit_sub_feat <- train(butyrate ~., data = df_ng_training_sub_feat, method = "rpart",
+                   trControl = trctrl,
+                   tuneLength = 10)
+
+
+dtree_fit_sub_feat$finalModel
+dtree_fitImp_sub_feat = varImp(dtree_fit_sub_feat)
+plot(dtree_fitImp_sub_feat)
+plot(dtree_fit_sub_feat)
+dtreeClasses_sub_feat <- predict(dtree_fit_sub_feat, newdata = df_ng_testing_sub_feat)
+table(dtreeClasses_sub_feat, df_ng_testing_sub_feat$butyrate)
+
+
+rf_fit_sub_feat <- train(butyrate ~., data = df_ng_training_sub_feat, method = "rf",
+                   trControl = trctrl,
+                   tuneLength = 10)
+
+
+rf_fitImp_sub_feat = varImp(rf_fit_sub_feat)
+
+```
+
+Using a single decision tree on 4000 features or 19 features, the same ones fall out in terms of importance. 
+
+Getting important features, like sporulation, probably means we don't have enough data - haven't integrated enough sporulating non-SCFA producing strains into our training set. 
